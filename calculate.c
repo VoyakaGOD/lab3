@@ -8,7 +8,8 @@
 void calculating_value(struct Node_int **top) {
     FILE *in_file = fopen("postfix_notation.txt", "r");
     FILE *out_file = fopen("rez.dat", "w");
-    int sym = 0, a = 0, b = 0;
+    char sym = 0;
+    int a = 0, b = 0;
 
     while ((sym = getc(in_file)) != EOF)
     {
