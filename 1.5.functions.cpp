@@ -29,7 +29,7 @@ void сalculating_value () {
 
         if (str[i] != '\n') {
             if (str[i] - '0' >= 0) {
-                push_int(&&top, str[i] - '0');
+                push_int(&top, str[i] - '0');
             } else if (str[i] == '^') {
                 x = pop_int (&top);
                 y = pop_int (&top);
