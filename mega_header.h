@@ -27,7 +27,7 @@ typedef enum Prior
     Sum_Sub       = 2,
     Mult_Div      = 3,
     Degree        = 4,
-    Bracket       = 5
+    Bracket       = 0
 };
 
 void post_notation (int N);
