@@ -31,25 +31,25 @@ void сalculating_value () {
             if (str[i] - '0' >= 0) {
                 push_int(&&top, str[i] - '0');
             } else if (str[i] == '^') {
-                x = pop_int (&&top);
-                y = pop_int (&&top);
-                push_int (&&top, y^x);
+                x = pop_int (&top);
+                y = pop_int (&top);
+                push_int (&top, y^x);
             } else if (str[i] == '*') {
-                x = pop_int (&&top);
-                y = pop_int (&&top);
+                x = pop_int (&top);
+                y = pop_int (&top);
                 push_int (&&top, y*x);
             } else if (str[i] == '/') {
-                x = pop_int (&&top);
-                y = pop_int (&&top);
-                push_int (&&top, y/x);
+                x = pop_int (&top);
+                y = pop_int (&top);
+                push_int (&top, y/x);
             } else if (str[i] == '+') {
-                x = pop_int (&&top);
-                y = pop_int (&&top);
-                push_int (&&top, y+x);
+                x = pop_int (&top);
+                y = pop_int (&top);
+                push_int (&top, y+x);
             } else if (str[i] == '-') {
-                x = pop_int (&&top);
-                y = pop_int (&&top);
-                push_int (&&top, y-x);
+                x = pop_int (&top);
+                y = pop_int (&top);
+                push_int (&top, y-x);
             } else {
                 printf ("SPANKING\n");
             }
