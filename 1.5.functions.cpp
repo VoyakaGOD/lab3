@@ -17,7 +17,7 @@ void сalculating_value () {
     fread(str, sizeof (char), length, input);
     for (int i = 0; i < length; i++) {
         if (str[i] == '\n' ) {
-            result = pop_int (&&top);
+            result = pop_int (&top);
 
             intoa(result, resultstr);
             strcat (resultstr, "\n");
