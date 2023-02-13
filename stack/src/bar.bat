@@ -1,0 +1,1 @@
+gcc test.cpp stack.cpp prog_log.cpp -o test.exe || pause
