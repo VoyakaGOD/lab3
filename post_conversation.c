@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "instack.h"
+#include "stack.h"
 
 #include "mega_header.h"
 
@@ -18,6 +18,9 @@ int main()
 char *post_conversion (char* S)
 {   
     assert(S == NULL);
+    stack_t stack = {};
+
+    STACK_INIT(stack, 10);
 
     char *new_string = (char*) calloc(LEN_OF_POLISH_TITLE, sizeof(char));
     char elem = 'A';
@@ -31,7 +34,7 @@ char *post_conversion (char* S)
         }
         else 
         {
-            if (isempty_int)
+            if (stack_)
             {
 
             }
