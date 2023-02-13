@@ -6,6 +6,7 @@
 struct Node_int{
     int  number;
     struct Node_int *next;
+    struct Node_int *prev;
 };
 
 const int POISON = 0xDEADF00D;
