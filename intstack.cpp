@@ -1,7 +1,7 @@
 #include "intstack.h"
 
 void push_int (struct Node_int **top, int a) {
-    Node_int *next = (Node_int *) malloc(sizeof(Node_int));
+    struct Node_int *next = (Node_int *) malloc(sizeof(struct Node_int));
 
     next->number = a;
     next->prev = (*top);
@@ -16,7 +16,7 @@ void push_int (struct Node_int **top, int a) {
 
 int pop_int (struct Node_int **top) {
     int res = (*top)->number;
-    Node_int *prev = (*top)->prev;
+    struct Node_int *prev = (*top)->prev;
 
     (*top)->number = POISON;
     (*top)->prev = NULL;
