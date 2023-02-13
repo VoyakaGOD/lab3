@@ -37,7 +37,7 @@ void сalculating_value () {
             } else if (str[i] == '*') {
                 x = pop_int (&top);
                 y = pop_int (&top);
-                push_int (&&top, y*x);
+                push_int (&top, y*x);
             } else if (str[i] == '/') {
                 x = pop_int (&top);
                 y = pop_int (&top);
