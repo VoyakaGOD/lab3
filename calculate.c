@@ -2,22 +2,21 @@
 #include <ctype.h>
 #include <math.h>
 
+#include "stack.h"
 #include "calculate.h"
 
-void calculating_value(struct Node **top) {
+void calculating_value(struct Node_int **top) {
     FILE *in_file = fopen("postfix_notation.txt", "r");
-    FILE *out_file = fopen("rez.dat", "w    ");
-    int sym = '';
+    FILE *out_file = fopen("rez.dat", "w");
+    int sym = 0, a = 0, b = 0;;
 
-    while ((sym = getc(file)) != EOF)
+    while ((sym = getc(in_file)) != EOF)
     {
         if (isdigit(sym))
             push_int(top, sym - '0');
 
         else {
-            switch (sym) {
-                int a = 0, b = 0;
-                
+            switch (sym) {                
                 case '+':
                     b = pop_int(top);
                     a = pop_int(top);
