@@ -19,4 +19,30 @@ char *post_conversion(char* S);
 
 void сalculating_value();
 
+#define LEN_OF_POLISH_TITLE 256
+
+typedef struct ELEM
+{
+    int value;
+    int type;
+    int prior;
+} Elem;
+
+enum Type
+{
+    Num           = 1,
+    Op            = 2,
+    Open_Bracket  = 3,
+    Close_Bracket = 4
+};
+
+enum Prior
+{
+    Num_Prior       = 1,
+    Sum_Sub_Prior   = 2,
+    Mult_Div_Prior  = 3,
+    Degree_Prior    = 4,
+    Bracket_Prior   = 0
+};
+
 #endif //MEGA_HEADER
