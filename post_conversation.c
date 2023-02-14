@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <assert.h>
-#include <unistd.h> 
-#include "stack.h"
 #include "mega_header.h"
 #include "general_debug.h"
 
