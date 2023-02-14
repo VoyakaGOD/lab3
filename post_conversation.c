@@ -5,23 +5,9 @@
 #include "mega_header.h"
 #include "general_debug.h"
 
-char *post_conversion(char *S);
-
 static int get_prior(int elem);
 
-int main()
-{
-    char S[64] = "(6-3)^2-9";
-
-    // printf("got address %p\n", post_conversion(S));
-    // char *new_str = post_conversion(S);
-    // DBG; 
-    printf("%s\n", post_conversion(S));
-    return 0;
-}
-
-
-char *post_conversion (char* S)
+char *post_conversion(char* S)
 {   
     assert(S != NULL);
     stack_t stack = {};
@@ -34,7 +20,7 @@ char *post_conversion (char* S)
 
     while (elem != '\0')
     {
-        printf("%c = %d\n", elem, elem);
+        //printf("%c = %d\n", elem, elem);
 
         if (isdigit(elem))
         {

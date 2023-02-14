@@ -7,7 +7,7 @@
 #include "stack/src/stack.hpp"
 
 #define PROG_FILE "program.txt"
-#define CONST_EXPR_FILE "constant_expression.txt"
+#define CONST_EXPR_FILE "constant_expressions.txt"
 #define PONO_FILE "postfix_notation.txt"
 #define RESULT_FILE "rez.dat"
 
@@ -17,7 +17,7 @@ void post_notation(int N);
 
 char *post_conversion(char* S);
 
-void сalculating_value();
+void calculating_value();
 
 #define LEN_OF_POLISH_TITLE 256
 

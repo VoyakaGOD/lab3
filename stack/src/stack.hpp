@@ -4,7 +4,7 @@
 #include "prog_log.hpp"
 #include <stdlib.h>
 
-#define STACK_INIT(stack, capacity) stack_init(&stack, capacity, { #stack, __func__, __FILE__, __LINE__ });
+#define STACK_INIT(stack, capacity) stack_init(&stack, capacity);
 
 #define STACK_DUMP(stack) fprintf(log_file, "%s() at %s(%d):\n", __func__, __FILE__, __LINE__); stack_dump(&stack)
 
@@ -12,7 +12,7 @@ extern size_t stack_dump_data_size;
 
 typedef int elem_t;
 
-const elem_t stack_poison = 0x00BADFAD;
+#define stack_poison 0x00BADFAD
 
 enum stack_error
 {
@@ -55,7 +55,7 @@ int stack_verify(stack_t *stack);
 /// @param[in] stack pointer to the instance
 /// @param[in] capacity size of alloced memory
 /// @param[in] origin info about origin of stack
-void stack_init(stack_t *stack, size_t capacity, object_origin_t origin);
+void stack_init(stack_t *stack, size_t capacity);
 
 /// @brief frees memory for data and nulls fields of stack
 /// @param[in] stack pointer to the instance

@@ -22,7 +22,7 @@
 
 #define FUNC_GENERAL_INFO(object)  __FILE__, __FUNCTION__, #object, __LINE__
 
-#define DBG printf("%s:%d -- %s\n", __FILE__, __LINE__, __FUNCTION__);
+#define DBG //printf("%s:%d -- %s\n", __FILE__, __LINE__, __FUNCTION__);
 
 
 #endif

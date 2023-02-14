@@ -1,5 +1,4 @@
 #include "mega_header.h"
-#include "list/list.h"
 
 void post_notation(int N)
 {
@@ -12,8 +11,10 @@ void post_notation(int N)
         c = fgetc(input_file);
         if (c == '\n' || c == EOF)
         {
-            char *s = to_str(input);
+            char *s = list_to_str(input);
+            printf(list_to_str(input));
             fputs(post_conversion(s), output_file);
+            fputs("\n", output_file);
             free(s);
             list_free(input);
             N--;

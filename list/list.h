@@ -1,4 +1,5 @@
 #ifndef LIST_HEADER
+#define LIST_HEADER
 #define LIST_TYPE char
 #define LIST_TO_STR "%c"
 #define LIST_ERR_VALUE '!'

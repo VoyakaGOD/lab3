@@ -166,6 +166,7 @@ void list_free(list_t *list)
     {
         list_node_t *next = current->next;
         free(current);
+        current = next;
     }
     list->head = NULL;
 }
@@ -188,5 +189,6 @@ char *list_to_str(list_t *list)
         string[i++] = current->value;
         current = current->next;
     }
+    string[i] = '\0';
     return string;
 }

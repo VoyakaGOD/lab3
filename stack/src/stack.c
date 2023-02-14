@@ -53,7 +53,7 @@ int stack_verify(stack_t *stack)
     return err;
 }
 
-void stack_init(stack_t *stack, size_t capacity, object_origin_t origin)
+void stack_init(stack_t *stack, size_t capacity)
 {
     errors = 0; 
     if(stack == NULL) 
@@ -65,7 +65,6 @@ void stack_init(stack_t *stack, size_t capacity, object_origin_t origin)
     stack->capacity = capacity;
     stack->size = 0;
     stack->data = NULL;
-    stack->origin = origin;
 
     stack_resize_impl(stack, capacity);
 }
@@ -78,7 +77,6 @@ void stack_release(stack_t *stack)
     stack->size = 0;
     free(stack->data);
     stack->data = NULL;
-    stack->origin = {};
 }
 
 void stack_resize(stack_t *stack, size_t capacity)
