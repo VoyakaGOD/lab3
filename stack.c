@@ -1,5 +1,7 @@
 #include "stack.h"
 
+static const elem_t STACK_POISON = 0x00BADFAD;
+
 #define CHECK_STACK(value) errors = 0;\
 int err = stack_verify(stack);\
 if(err)\
@@ -23,7 +25,7 @@ static void stack_resize_impl(stack_t *stack, size_t capacity)
     }
 
     for(int index = stack->size; index < capacity; index++)
-        stack->data[index] = stack_poison;
+        stack->data[index] = STACK_POISON;
 }
 
 int stack_get_last_errors()
@@ -53,7 +55,7 @@ int stack_verify(stack_t *stack)
     return err;
 }
 
-void stack_init(stack_t *stack, size_t capacity, object_origin_t origin)
+void stack_init(stack_t *stack, size_t capacity)
 {
     errors = 0; 
     if(stack == NULL) 
@@ -65,7 +67,6 @@ void stack_init(stack_t *stack, size_t capacity, object_origin_t origin)
     stack->capacity = capacity;
     stack->size = 0;
     stack->data = NULL;
-    stack->origin = origin;
 
     stack_resize_impl(stack, capacity);
 }
@@ -78,7 +79,7 @@ void stack_release(stack_t *stack)
     stack->size = 0;
     free(stack->data);
     stack->data = NULL;
-    stack->origin = {};
+    // stack->origin = {};
 }
 
 void stack_resize(stack_t *stack, size_t capacity)
@@ -108,12 +109,12 @@ void stack_push(stack_t *stack, elem_t item)
 
 elem_t stack_peek(stack_t *stack)
 {
-    CHECK_STACK(stack_poison)
+    CHECK_STACK(STACK_POISON)
 
     if(stack->size == 0)
     {
         errors |= STACK_GET_ITEM_FROM_EMPTY;
-        return stack_poison;
+        return STACK_POISON;
     }
 
     return stack->data[stack->size - 1];
@@ -123,9 +124,9 @@ elem_t stack_pop(stack_t *stack)
 {
     elem_t item = stack_peek(stack);
 
-    if(errors) return stack_poison;
+    if(errors) return STACK_POISON;
     
-    stack->data[--stack->size] = stack_poison;
+    stack->data[--stack->size] = STACK_POISON;
     return item;
 }
 
@@ -151,35 +152,35 @@ void stack_print_errors(FILE *file)
 
 void stack_dump(stack_t *stack)
 {
-    errors = 0;
-    if(stack == NULL) 
-    { 
-        errors = STACK_NULL_PTR; 
-        return; 
-    }
+    // errors = 0;
+    // if(stack == NULL) 
+    // { 
+    //     errors = STACK_NULL_PTR; 
+    //     return; 
+    // }
 
-    int err = stack_verify(stack);
-    fprintf(log_file, "stack[%p](%s) \"%s\" at %s() at %s(%d):\n", stack, err == 0 ? "ok" : "err", 
-    stack->origin.name, stack->origin.function, stack->origin.file, stack->origin.line);
-    fprintf(log_file, "{\n");
-    fprintf(log_file, "    size = %d\n", stack->size);
-    fprintf(log_file, "    capacity = %d\n", stack->capacity);
-    fprintf(log_file, "    data[%p]\n", stack->data);
-    if(stack->data != NULL)
-    {
-        int items_count = stack->capacity;
-        if(stack_dump_data_size >= 0 && stack_dump_data_size < stack->capacity)
-            items_count = stack_dump_data_size;
+    // int err = stack_verify(stack);
+    // fprintf(log_file, "stack[%p](%s) \"%s\" at %s() at %s(%d):\n", stack, err == 0 ? "ok" : "err", 
+    // stack->origin.name, stack->origin.function, stack->origin.file, stack->origin.line);
+    // fprintf(log_file, "{\n");
+    // fprintf(log_file, "    size = %zd\n", stack->size);
+    // fprintf(log_file, "    capacity = %zd\n", stack->capacity);
+    // fprintf(log_file, "    data[%p]\n", stack->data);
+    // if(stack->data != NULL)
+    // {
+    //     int items_count = stack->capacity;
+    //     if(stack_dump_data_size >= 0 && stack_dump_data_size < stack->capacity)
+    //         items_count = stack_dump_data_size;
         
-        fprintf(log_file, "    {\n");
-        for(int i = 0; i < items_count; i++)
-        {
-            if(stack->data[i] == stack_poison)
-                fprintf(log_file, "        %x\n", stack->data[i]);
-            else
-                fprintf(log_file, "        %d\n", stack->data[i]);
-        }
-        fprintf(log_file, "    }\n");
-    }
-    fprintf(log_file, "}\n");
+    //     fprintf(log_file, "    {\n");
+    //     for(int i = 0; i < items_count; i++)
+    //     {
+    //         if(stack->data[i] == STACK_POISON)
+    //             fprintf(log_file, "        %x\n", stack->data[i]);
+    //         else
+    //             fprintf(log_file, "        %d\n", stack->data[i]);
+    //     }
+    //     fprintf(log_file, "    }\n");
+    // }
+    // fprintf(log_file, "}\n");
 }

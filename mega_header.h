@@ -10,10 +10,10 @@ typedef struct ELEM
 {
     int value;
     int type;
-    int prior
-}Elem;
+    int prior;
+} Elem;
 
-typedef enum Type
+enum Type
 {
     Num           = 1,
     Op            = 2,
@@ -21,13 +21,13 @@ typedef enum Type
     Close_Bracket = 4
 };
 
-typedef enum Prior
+enum Prior
 {
-    Num           = 1,
-    Sum_Sub       = 2,
-    Mult_Div      = 3,
-    Degree        = 4,
-    Bracket       = 0
+    Num_Prior       = 1,
+    Sum_Sub_Prior   = 2,
+    Mult_Div_Prior  = 3,
+    Degree_Prior    = 4,
+    Bracket_Prior   = 0
 };
 
 void post_notation (int N);

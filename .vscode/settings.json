@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "mega_header.h": "c",
+        "stack.h": "c"
+    }
+}
