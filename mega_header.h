@@ -20,6 +20,7 @@ char *post_conversion(char* S);
 void calculating_value();
 
 #define LEN_OF_POLISH_TITLE 256
+#define LEN_OF_MAX_EXPR    4096
 
 typedef struct ELEM
 {
